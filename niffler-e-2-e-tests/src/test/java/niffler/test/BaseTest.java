@@ -1,8 +1,5 @@
 package niffler.test;
 
-import niffler.jupiter.BeforeSuiteExtension;
-import org.junit.jupiter.api.extension.ExtendWith;
-
-@ExtendWith(BeforeSuiteExtension.class)
-public abstract class BaseTest {
+public class BaseTest {
+    // TODO: to be continue...
 }
