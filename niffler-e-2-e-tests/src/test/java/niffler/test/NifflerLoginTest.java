@@ -14,6 +14,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import static com.codeborne.selenide.Selenide.$;
 import static niffler.jupiter.User.UserType.ADMIN;
 import static niffler.config.AppConfigReader.appConfig;
+import static niffler.jupiter.User.UserType.COMMON;
 
 @ExtendWith({ScreenshotExtension.class, UsersExtension.class})
 public class NifflerLoginTest {
@@ -96,16 +97,21 @@ public class NifflerLoginTest {
 
     @AllureId("6")
     @Test
-    void mainPageShouldBeDisplayedAfterSuccessLogin6(@User UserModel user) {
-        System.out.println("#### Test 6 " + user.toString());
-        Allure.step("Check login", () -> {
+    void mainPageShouldBeDisplayedAfterSuccessLogin4(@User(userType = COMMON) UserModel userFirst,
+                @User(userType = COMMON) UserModel userSecond) {
+
+        System.out.println("#### Test 6 " + userFirst.toString());
+        System.out.println("#### Test 6 " + userSecond.toString());
+
+        Allure.step("Check login via user " + userFirst , () -> {
             Selenide.open(URL);
             $("a[href*='redirect']").click();
-            $("input[name='username']").setValue(user.getUsername());
-            $("input[name='password']").setValue(user.getPassword());
+            $("input[name='username']").setValue(userFirst.getUsername());
+            $("input[name='password']").setValue(userFirst.getPassword());
             $("button[type='submit']").click();
             $(".header__title").shouldBe(Condition.visible)
                     .shouldHave(Condition.text("Niffler. The coin keeper."));
+            $(".button-icon_type_logout").click();
         });
     }
 }
