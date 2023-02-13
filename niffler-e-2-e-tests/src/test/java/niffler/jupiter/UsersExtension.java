@@ -27,9 +27,10 @@ public class UsersExtension implements
     private static final Queue<UserModel> USER_MODEL_COMMON_QUEUE = new ConcurrentLinkedQueue<>();
 
     static {
-        USER_MODEL_ADMIN_QUEUE.add(new UserModel("dima", "12345"));
-        USER_MODEL_COMMON_QUEUE.add(new UserModel("bill", "12345"));
+        USER_MODEL_ADMIN_QUEUE.add(new UserModel("admin", "admin"));
+        USER_MODEL_COMMON_QUEUE.add(new UserModel("user", "user"));
         USER_MODEL_COMMON_QUEUE.add(new UserModel("test", "test"));
+        USER_MODEL_COMMON_QUEUE.add(new UserModel("yulia", "yulia"));
     }
 
     @Override
